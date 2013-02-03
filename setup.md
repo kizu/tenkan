@@ -11,7 +11,7 @@ Jekyll has a bit incostistent API for getting the page from `page` and any page 
 {% endfor %}
 ```
 
-Getting the title from markdown files, so we won't need to use `title` in YAML front matter.
+[Getting the title from markdown files](get_title.md), so we won't need to use `title` in YAML front matter.
 
 ``` django
 {% include get_title.md %}
