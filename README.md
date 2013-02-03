@@ -12,6 +12,14 @@ This repo consists of some useful _includes_, that you could use for your site o
 
     Doing so would clone the tenkan to your project, so you could use and update it without any hassle.
 
+## Developing
+
+If you've cloned the repo as a submodule and you'd want to contribute, then you'll need to update the push url to the non-read-only one. For this repo it would be
+
+    git remote set-url --push origin git@github.com:kizu/tenkan.git
+
+If you've forked it, then replace `kizu` with your username.
+
 - - -
 
 To be continued…
