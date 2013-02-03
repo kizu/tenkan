@@ -1,6 +1,6 @@
 # Getting the title from markdown files
 
-Jekyll have a bug (?) — the content of the posts in `site.posts` is rendered for the current page and all the older posts and is **not** rendered for all the newer posts, so when we need to get post's content, we need to look if it is still in markdown and then markdownify it.
+Jekyll have a bug (?) — the content of the posts in `site.posts` is rendered for the current page and all the older posts and is **not** rendered for all the newer posts, so when we need to get post's content, we need to look if it is still in markdown and then markdownify it.
 
 Currently made hardcody, so it would work only if your post's content starts with a header.
 
