@@ -2,6 +2,8 @@
 
 This repo consists of some useful _includes_, that you could use for your site or blog on Jekyll.
 
+_However_, all those things are very hacky (as almost anything you could do without plugins in Jekyll), so be cautious, things can go wrong any moment ;)
+
 ## Features
 
 - Made for gh-pages. All the things Tenkan contains are just some magic made in Liquid — no ruby plugins. That means that it would work everywhere the Jekyll is run with `--safe` flag, so it would perfectly work at GitHub Pages.
