@@ -18,7 +18,7 @@ _However_, all those things are very hacky (as almost anything you could do with
 
 ## Install & Use
 
-1. Download or clone this repo into your `_include` folder, or just use a git submodule:
+1. Download or clone this repo into your `_include/tenkan` folder, or just use a git submodule:
 
         git submodule add git://github.com/kizu/tenkan.git _includes/tenkan
 
