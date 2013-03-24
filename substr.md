@@ -10,7 +10,6 @@ Accepts three arguments: `substr_input`, `substr_index` and `substr_length`, ret
     {% assign substr_result = substr_input | remove_first:substr_result %}
     {% assign substr_result = substr_result | truncate:substr_length,'' %}
 {% endif %}
-
 ```
 
 Reset the used arguments

@@ -9,7 +9,6 @@ Accepts three arguments: `indexof_input` and `indexof_substr`, returns `indexof_
     {% assign indexof_result = indexof_input | split:indexof_substr %}
     {% assign indexof_result = indexof_result[0] | size %}
 {% endif %}
-
 ```
 
 Reset the used arguments
