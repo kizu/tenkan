@@ -28,3 +28,15 @@ Check if the first line contains `# `, then set the `processed_title` to the fou
     {% capture processed_title %}{{ page.title }}{% endcapture %}
 {% endif %}
 ```
+
+And, finally, check for the current title, so we would use the explicitly set title instead of H1 one.
+
+``` django
+    {% assign name_from_url = processed_post.url | split:'/' | last %}
+    {% assign name_from_title = processed_post.title | downcase | replace:' ','-' %}
+    {% if processed_post.title %}
+        {% if name_from_url != name_from_title %}
+            {% assign processed_title = processed_post.title %}
+        {% endif %}
+    {% endif %}
+```
