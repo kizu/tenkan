@@ -21,10 +21,12 @@ Use like this:
 Check if the post is in markdown, convert if needed
 
 ``` django
-{% assign toc_input = toc_input.content %}
-{% assign toc_test_content = toc_input | prepend:'^' %}
-{% if toc_test_content contains "^#" %}
-    {% assign toc_input = toc_input | markdownify %}
+{% if toc_input.content %}
+    {% assign toc_input = toc_input.content %}
+    {% assign toc_test_content = toc_input | prepend:'^' %}
+    {% if toc_test_content contains "^#" %}
+        {% assign toc_input = toc_input | markdownify %}
+    {% endif %}
 {% endif %}
 ```
 
