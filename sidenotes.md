@@ -25,17 +25,27 @@ Check if the post is in markdown, convert if needed
 
 
 ``` django
+{% assign sidenotes_counter = 1 %}
 {% assign sidenotes_ids = '' %}
+{% assign sidenotes_id_strings = '' %}
 {% assign sidenotes_contexts = '' %}
 {% assign sidenotes_contents = '' %}
 {% assign sidenotes_notes = sidenotes_input | split:'<sidenote' %}
 
 {% for sidenotes_note in sidenotes_notes offset:1 %}
-    {% assign sidenote_note_id = sidenotes_note | split:'>' | first %}
+    {% assign sidenotes_note_test = sidenotes_note | truncate:1,'' %}
+    {% if sidenotes_note_test == '>' %}
+        {% capture sidenotes_note_id %}sidenote_{{ sidenotes_counter }}{% endcapture %}
+        {% capture sidenotes_note_id_string %}<sidenote>{% endcapture %}
+        {% assign sidenotes_counter = sidenotes_counter | plus:1 %}
+    {% else %}
+        {% assign sidenotes_note_id = sidenotes_note | split:'">' | first | remove:' id="' %}
+        {% capture sidenotes_note_id_string %}<sidenote id="{{ sidenotes_note_id }}">{% endcapture %}
+    {% endif %}
     {% capture sidenotes_ids %}{{ sidenotes_ids }}, {{ sidenotes_note_id }}{% endcapture %}
+    {% capture sidenotes_id_strings %}{{ sidenotes_id_strings }}, {{ sidenotes_note_id_string }}{% endcapture %}
 {% endfor %}
 
-{% assign sidenotes_ids = sidenotes_ids | split:', ' %}
-{% assign sidenotes_contexts = sidenotes_contexts | split:',,, ' %}
-{% assign sidenotes_contents = sidenotes_contents | split:',,, ' %}
+{% assign sidenotes_ids = sidenotes_ids | remove_first:', ' | split:', ' %}
+{% assign sidenotes_id_strings = sidenotes_id_strings | remove_first:', ' | split:', ' %}
 ```
