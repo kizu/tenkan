@@ -1,8 +1,8 @@
 # Helper for creating TOC from a page
 
-Easy getting a substring at the given index with the given length.
+Creates TOC from given content.
 
-Accepts the content in markdown: `toc_input`, returns two arrays: `toc_titles` and `toc_links`.
+Accepts the content in markdown: `toc_input`, returns three arrays: `toc_headers_id`, `toc_headers_indexes` and `toc_headers_contents`.
 
 Use like this:
 
