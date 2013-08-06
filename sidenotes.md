@@ -25,6 +25,7 @@ Check if the post is in markdown, convert if needed
 
 
 ``` django
+{% assign sidenotes_count = 0 %}
 {% assign sidenotes_counter = 1 %}
 {% assign sidenotes_ids = '' %}
 {% assign sidenotes_id_strings = '' %}
@@ -55,6 +56,8 @@ Check if the post is in markdown, convert if needed
     {% capture sidenotes_contexts %}{{ sidenotes_contexts }},,, {{ sidenotes_note_context }}{% endcapture %}
     {% capture sidenotes_contents %}{{ sidenotes_contents }},,, {{ sidenotes_note_content }}{% endcapture %}
     {% capture sidenotes_id_strings %}{{ sidenotes_id_strings }},,, {{ sidenotes_note_id_string }}{% endcapture %}
+
+    {% assign sidenotes_count = sidenotes_count | plus:1 %}
 {% endfor %}
 
 {% assign sidenotes_ids = sidenotes_ids | remove_first:', ' | split:', ' %}
