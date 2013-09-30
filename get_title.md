@@ -5,38 +5,42 @@ Jekyll have a bug (?) — the content of the posts in `site.posts` is rendered f
 Currently made hardcody, so it would work only if your post's content starts with a header.
 
 ``` django
-{% assign processed_content = processed_post.content %}
-{% assign test_content = processed_content | prepend:'^' %}
-{% if test_content contains "^#" %}
-    {% assign processed_content = processed_content | markdownify %}
+{% if get_title_input.content %}
+    {% assign get_title_content = get_title_input.content %}
+    {% assign get_title_test_content = get_title_content | prepend:'^' %}
+    {% if get_title_test_content contains "^#" %}
+        {% assign get_title_content = get_title_content | markdownify %}
+    {% endif %}
+{% else %}
+    {% assign get_title_content = get_title_input %}
 {% endif %}
 ```
 
 I couldn't find any other way to split by newlines except using the `newline_to_br`, `\n` didn't work here:
 
 ``` django
-{% assign content_lines = processed_content | newline_to_br | split:'<br />' %}
+{% assign content_lines = get_title_content | newline_to_br | split:'<br />' %}
 ```
 
-Check if the first line contains `# `, then set the `processed_title` to the found string and delete this header from the `processed_content`:
+Check if the first line contains `# `, then set the `get_title_output` to the found string and delete this header from the `get_title_content`:
 
 ``` django
 {% if content_lines[0] contains '<h1 ' %}
-    {% capture processed_title %}{{ content_lines[0] | strip_html }}{% endcapture %}
-    {% assign processed_content = processed_content | remove_first:content_lines[0] %}
+    {% capture get_title_output %}{{ content_lines[0] | strip_html }}{% endcapture %}
+    {% assign get_title_content = get_title_content | remove_first:content_lines[0] %}
 {% else %}
-    {% capture processed_title %}{{ page.title }}{% endcapture %}
+    {% capture get_title_output %}{{ page.title }}{% endcapture %}
 {% endif %}
 ```
 
 And, finally, check for the current title, so we would use the explicitly set title instead of H1 one.
 
 ``` django
-    {% assign name_from_url = processed_post.url | split:'/' | last %}
-    {% assign name_from_title = processed_post.title | downcase | replace:' ','-' %}
-    {% if processed_post.title %}
+    {% assign name_from_url = get_title_input.url | split:'/' | last %}
+    {% assign name_from_title = get_title_input.title | downcase | replace:' ','-' %}
+    {% if get_title_input.title %}
         {% if name_from_url != name_from_title %}
-            {% assign processed_title = processed_post.title %}
+            {% assign get_title_output = get_title_input.title %}
         {% endif %}
     {% endif %}
 ```

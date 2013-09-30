@@ -3,10 +3,10 @@
 Jekyll has a bit incostistent API for getting the page from `page` and any page from `site.posts` or similar, so for consistency we would work only with the latter, so for all the basic stuff we'll need the `processed_post` to be the current one.
 
 ``` django
-{% assign processed_post = page %}
+{% assign get_title_input = page %}
 {% for post in site.posts %}
     {% if page.id == post.id %}
-        {% assign processed_post = post %}
+        {% assign get_title_input = post %}
     {% endif %}
 {% endfor %}
 ```
@@ -15,4 +15,6 @@ Jekyll has a bit incostistent API for getting the page from `page` and any page 
 
 ``` django
 {% include tenkan/get_title.md %}
+{% assign processed_content = get_title_content %}
+{% assign processed_title = get_title_output %}
 ```
