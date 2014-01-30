@@ -16,7 +16,7 @@ Check if the post is in markdown, convert if needed
 
                 {% capture partials_raw_content %}
 
-{:#{{ item_id }}}
+{% unless partials_input.partials_no_ids %}{:#{{ item_id }}}{% endunless %}
 {{ item.content }}
 
                 {% endcapture %}
