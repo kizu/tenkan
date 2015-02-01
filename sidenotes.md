@@ -64,4 +64,10 @@ Check if the post is in markdown, convert if needed
 {% assign sidenotes_contexts = sidenotes_contexts | remove_first:',,, ' | split:',,, ' %}
 {% assign sidenotes_contents = sidenotes_contents | remove_first:',,, ' | split:',,, ' %}
 {% assign sidenotes_id_strings = sidenotes_id_strings | remove_first:',,, ' | split:',,, ' %}
+
+{% if sidenotes_count == 0 %}
+    {% if page.ensure_sidenote_layout %}
+        {% assign sidenotes_count = 2 %}
+    {% endif %}
+{% endif %}
 ```
